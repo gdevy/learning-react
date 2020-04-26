@@ -25,22 +25,43 @@ const App = () => {
   )
 }
 
-const Statistics = ({ good, bad, neutral }) => {
-
-  let total = good - bad + neutral
-  let average = (good + bad)/total
-
+const Statistic = ({ text, num }) => {
 
   return (
-    <div>
-      <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>neutral {neutral}</p >
-      <p>bad {bad}</p>
-      <p>average {average || 0}</p>
-      <p>positive {(100 * good/total) || 0} %</p>
-    </div>
+    <tr>
+      <td> {text} </td>
+      <td> {num} </td>
+    </tr>
   )
+}
+
+const Statistics = ({ good, bad, neutral }) => {
+
+  let total = good + bad + neutral
+  let average = (good - bad) / total
+
+
+  if (total > 0) {
+    return (
+      <div>
+        <h1>statistics</h1>
+        <table>
+          <Statistic text={"good"} num={good} />
+          <Statistic text={"neutral"} num={neutral} />
+          <Statistic text={"bad"} num={bad} />
+          <Statistic text={"average"} num={average} />
+          <Statistic text={"positive"} num={100 * good / total + " %"} />
+        </table>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <h1>statistics</h1>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
 }
 
 ReactDOM.render(<App />,
