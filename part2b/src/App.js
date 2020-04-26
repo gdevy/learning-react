@@ -27,6 +27,8 @@ const App = () => {
     let newPerson = { name: newName, number: newNumber }
     if (persons.some(person => person.name === newPerson.name)) {
       alert(`${newPerson.name} is already added to phonebook`)
+    } else if (!newName || !newNumber) {
+      alert('Name or number missing')
     } else {
       setPersons([...persons, newPerson])
       setNewName('')
@@ -38,10 +40,10 @@ const App = () => {
     <>
       <h2>Phonebook</h2>
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Register 
+      <Register
         registerFormHandler={registerFormHandler}
-        newName={newName} setNewName={setNewName}  
-        newNumber={newNumber} setNewNumber={setNewNumber}/>
+        newName={newName} setNewName={setNewName}
+        newNumber={newNumber} setNewNumber={setNewNumber} />
       <UserList persons={filteredPersons} />
     </>
   )
