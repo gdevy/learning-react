@@ -5,22 +5,11 @@ import CountryItem from './CountryItem'
 const Content = ({ countries }) => {
 
     if (countries.length > 10) {
-        return (
-            <p>Too many coutnries, be more specific</p>
-        )
+        //return too many countries
     } else if (countries.length === 1) {
-        return (
-            <Country country={countries[0]} />
-        )
+        //return specific country
     } else if (countries.length <= 10 && countries.length > 1) {
-        return (
-            countries.map(country => <CountryItem key={country.numericCode} country={country} />)
-        )
-    } else {
-        return (
-            <>
-            </>
-        )
+        //return short list of CountryItem
     }
 }
 
